@@ -292,20 +292,32 @@ impl TaskDialogConfig {
         }
         execute_task_dialog(conf, ExecuteOption::TaskDialogNavigate).ok();
     }
+
+    pub fn destroy_dialog(&mut self) {
+        unsafe {
+            SendMessageA(
+                self.dialog_hwnd,
+                WM_SYSCOMMAND,
+                SC_CLOSE,
+                0,
+            );
+        }
+    }
 }
 
 #[cfg(not(windows))]
 impl TaskDialogConfig {
     pub fn enable_process_bar(&mut self, _marquee: bool) {}
-    pub fn disable_process_bar(&mut self, marquee: bool) {}
+    pub fn disable_process_bar(&mut self, _marquee: bool) {}
     pub fn set_process_bar_marquee(&mut self, _enable: bool, _time: isize) {}
     pub fn set_process_bar(&mut self, _percentage: usize) {}
-    pub fn set_content(&mut self, content: &str) {}
-    pub fn set_main_instruction(&mut self, main_instruction: &str) {}
-    pub fn set_footer(&mut self, footer: &str) {}
-    pub fn set_expanded_information(&mut self, expanded_information: &str) {}
-    pub fn set_button_elevation_required_state(&mut self, button_id: usize, enable: bool) {}
-    pub fn navigate_page(&mut self, conf: &mut TaskDialogConfig) {}
+    pub fn set_content(&mut self, _content: &str) {}
+    pub fn set_main_instruction(&mut self, _main_instruction: &str) {}
+    pub fn set_footer(&mut self, _footer: &str) {}
+    pub fn set_expanded_information(&mut self, _expanded_information: &str) {}
+    pub fn set_button_elevation_required_state(&mut self, _button_id: usize, _enable: bool) {}
+    pub fn navigate_page(&mut self, _conf: &mut TaskDialogConfig) {}
+    pub fn destroy_dialog(&mut self) {}
 }
 
 pub struct TaskDialogButton {

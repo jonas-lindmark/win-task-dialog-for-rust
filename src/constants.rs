@@ -13,6 +13,9 @@ pub use winapi::um::commctrl::{
     TDN_DESTROYED, TDN_HYPERLINK_CLICKED, TDN_NAVIGATED, TD_ERROR_ICON, TD_INFORMATION_ICON,
     TD_SHIELD_ICON, TD_WARNING_ICON,
 };
+#[cfg(windows)]
+pub use winapi::um::winuser::{WM_SYSCOMMAND, SC_CLOSE};
+
 
 #[cfg(not(windows))]
 pub const TDCBF_CANCEL_BUTTON: u32 = 0;
@@ -78,3 +81,7 @@ pub const TDN_DESTROYED: u32 = 0;
 pub const TDN_HYPERLINK_CLICKED: u32 = 0;
 #[cfg(not(windows))]
 pub const TDN_NAVIGATED: u32 = 0;
+#[cfg(not(windows))]
+pub const WM_SYSCOMMAND: u32 = 0;
+#[cfg(not(windows))]
+pub const SC_CLOSE: u32 = 0;
